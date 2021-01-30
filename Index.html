@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Disc Golf Dashboard</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -19,31 +23,94 @@
         <p>Use the interactive charts below to explore the dataset</p>
       </div>
     </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name="Metadata" Value ="Private Course">Private Course
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Pay to Play Course">Pay to Play Course
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Presence of Water on a Course">Presence of Water on a Course
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Reviews
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Favorited 
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Wishlisted 
-    </div>
-    <div>
-        <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Played
-    </div>
-    <div>    
-        <label for="terrain">Terrain:</label>
+    <div class="row">
+      <div class="col-lg-4"></div>
+        <br>
+            <INPUT TYPE="Checkbox" Name="Metadata" Value ="Private Course">Private Course
 
-        <select multiple id="menu">>
+        <div>
+            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Pay to Play Course">Pay to Play Course
+        </div>
+        <div>
+            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Reviews
+        </div>
+        <div>
+            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Favorited/Wishlisted">Favorited / Wishlisted 
+       </div>
+        <div>
+          <INPUT TYPE="Checkbox" Name= "Water Obstacle" Value ="Reviews">Water Obstacle 
+      </div>
+        <div>
+            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Played
+        </div>
 
-        </select>
+      <!-- <div class="col-lg-4"></div> -->
+      <!-- <div>    
+          <label for="terrain">Terrain:</label>
+
+          <select id="terrain-list" multiple="multiple">
+            <option value="Lightly Wooded">Lightly Wooded</option>
+            <option value="Moderately Wooded">Moderately Wooded</option>
+            <option value="Heavily Wooded">Heavily Wooded</option>
+
+          </select>
+          
+      </div>
+   
+        <label for="Landscape">Landscape:</label>
+
+        <select id="landscape-list" multiple="multiple">
+          <option value="Mostly Flat">Mostly Flat</option>
+          <option value="Moderately Hilly">Moderately Hilly</option>
+          <option value="Very Hilly">Very Hilly</option>
+
+        </select> -->
+        <br>
+      <div class="col-12 col-md-8 container">
+        <div class="row col-11">
+        <div>
+          <button onclick="dropDown(event);" class="menu-btn" type="button">
+              Terrain &#9013;
+          </button>
+          <div class="d-none shadow rounded menu">
+              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+                Lightly Wooded</label></span>
+              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+                Moderately Wooded</label></span>
+              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+                Heavily Wooded</label></span>
+          </div>
+      </div>
+ 
+      <div>
+        <button onclick="dropDown(event);" class="menu-btn" type="button">
+            Landscape &#9013;
+        </button>
+        <div class="d-none shadow rounded menu">
+            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+              Mostly Flat</label></span>
+            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+              Moderately Hilly</label></span>
+            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
+              Very Hilly</label></span>
+        </div>
     </div>
+    <div class="d-none" id="overlay" onclick="hide(event)"></div>
+    <script>
+      function dropDown(event) {
+          event.target.parentElement.children[1].classList.remove("d-none");
+          document.getElementById("overlay").classList.remove("d-none");
+      }
+      function hide(event) {
+          var items = document.getElementsByClassName('menu');
+          for (let i = 0; i < items.length; i++) {
+              items[i].classList.add("d-none");
+          }
+          document.getElementById("overlay").classList.add("d-none");
+      }
+  </script>
+
+    </div>
+
+  </body>
+  </html>
