@@ -134,16 +134,12 @@ def get_feature_aggregate():
 @app.route("/api/v1/TestData")
 def get_test_data():
 
-    feature = 'rating'
-    aggregate = 'mean'
-
     df = find_courses()
 
-    df = df.groupby(['state_name', 'state_abbr']).agg([aggregate])[feature]
+    df = df.groupby(['state_name', 'state_abbr'])['rating', 'length_ft'].agg(['mean'])
 
-    df = df.rename(columns={
-        aggregate:feature
-    }).reset_index()
+    df.columns = df.columns.droplevel(1)
+    df = df.reset_index()
 
     # return some data
     return Response(df.to_json(orient="records"), mimetype='application/json')
