@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, Response, request
 from flask_pymongo import PyMongo
 from datetime import datetime as dt
 import pandas as pd
+import json
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -136,13 +137,29 @@ def get_test_data():
 
     df = find_courses()
 
-    df = df.groupby(['state_name', 'state_abbr'])['rating', 'length_ft'].agg(['mean'])
+    primary_feature = 'rating'
+    secondary_feature = 'length_ft'
+
+    features = [primary_feature, secondary_feature]
+
+    df = df.groupby(['state_name', 'state_abbr'])[features].agg(['mean'])
 
     df.columns = df.columns.droplevel(1)
+
+    df = df.rename({primary_feature:"primary_feature",secondary_feature:"secondary_feature"}, axis='columns') 
+
     df = df.reset_index()
 
+    data = {}
+
+    data['primary_label'] = "Average Rating"
+    data['secondary_label'] = "Average Length (ft)"
+    data['data'] = df.to_dict('records')
+
+    json_data = json.dumps(data)
+
     # return some data
-    return Response(df.to_json(orient="records"), mimetype='application/json')
+    return Response(json_data, mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)
