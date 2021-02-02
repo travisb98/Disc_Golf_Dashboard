@@ -7,110 +7,120 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Disc Golf Dashboard</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 </head>
 
+
+
 <body>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center" id="main-jumbo">
-        <h1>Disc Golf Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-      </div>
+  <div class="container py-5">
+    <div class="jumbotron text-white jumbotron-image shadow" style="background-image: url(https://cdn.buttercms.com/o9NBeurtRZi82330SO3f);">
+      <h2 class="mb-4">
+        Disc Golf Dashboard
+      </h2>
+      <p class="mb-4">
+        Use the interactive side menu to select dataset, then click submit
     </div>
-    <div class="row">
-      <div class="col-lg-4"></div>
+  </div>
+  <div class="sidenav">
+    <div>
+      Private
+      <br>
+      <INPUT TYPE="Checkbox" Name="Private" Value ="All">All (default)
         <br>
-            <INPUT TYPE="Checkbox" Name="Metadata" Value ="Private Course">Private Course
-
-        <div>
-            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Pay to Play Course">Pay to Play Course
-        </div>
-        <div>
-            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Reviews
-        </div>
-        <div>
-            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Favorited/Wishlisted">Favorited / Wishlisted 
-       </div>
-        <div>
-          <INPUT TYPE="Checkbox" Name= "Water Obstacle" Value ="Reviews">Water Obstacle 
-      </div>
-        <div>
-            <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Played
-        </div>
-
-      <!-- <div class="col-lg-4"></div> -->
-      <!-- <div>    
-          <label for="terrain">Terrain:</label>
-
-          <select id="terrain-list" multiple="multiple">
-            <option value="Lightly Wooded">Lightly Wooded</option>
-            <option value="Moderately Wooded">Moderately Wooded</option>
-            <option value="Heavily Wooded">Heavily Wooded</option>
-
-          </select>
-          
-      </div>
-   
-        <label for="Landscape">Landscape:</label>
-
-        <select id="landscape-list" multiple="multiple">
-          <option value="Mostly Flat">Mostly Flat</option>
-          <option value="Moderately Hilly">Moderately Hilly</option>
-          <option value="Very Hilly">Very Hilly</option>
-
-        </select> -->
+      <INPUT TYPE="Checkbox" Name="Private" Value ="Private Only">Private Only
         <br>
-      <div class="col-12 col-md-8 container">
-        <div class="row col-11">
-        <div>
-          <button onclick="dropDown(event);" class="menu-btn" type="button">
-              Terrain &#9013;
-          </button>
-          <div class="d-none shadow rounded menu">
-              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-                Lightly Wooded</label></span>
-              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-                Moderately Wooded</label></span>
-              <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-                Heavily Wooded</label></span>
-          </div>
-      </div>
- 
+        <INPUT TYPE="Checkbox" Name="Private" Value ="Exclude Private">Exclude Private
+    </div>
+    <br>
+    <div>
+      Pay
+      <br>
+      <INPUT TYPE="Checkbox" Name="Pay" Value ="All">All 
+        <br>
+      <INPUT TYPE="Checkbox" Name="Pay" Value ="Pay Only">Pay Only
+        <br>
+        <INPUT TYPE="Checkbox" Name="Pay" Value ="Exclude Pay">Exclude Pay
+    </div>
+    <br>
       <div>
-        <button onclick="dropDown(event);" class="menu-btn" type="button">
-            Landscape &#9013;
-        </button>
-        <div class="d-none shadow rounded menu">
-            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-              Mostly Flat</label></span>
-            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-              Moderately Hilly</label></span>
-            <span class="d-block menu-option"><label><input type="checkbox">&nbsp;
-              Very Hilly</label></span>
+        # of Holes
+        <br>
+        <INPUT TYPE="Checkbox" Name="# of Holes" Value ="All">All
+          <br>
+        <INPUT TYPE="Checkbox" Name="# of Holes" Value ="Less than 9 holes">Less than 9 holes
+          <br>
+          <INPUT TYPE="Checkbox" Name="# of Holes" Value ="9 holes">9 holes
+            <br>
+          <INPUT TYPE="Checkbox" Name="# of Holes" Value ="10-17 holes">10-17 holes
+            <br>
+          <INPUT TYPE="Checkbox" Name="# of Holes" Value ="18 holes">18 holes
+            <br>
+            <INPUT TYPE="Checkbox" Name="# of Holes" Value ="More than 18 holes">More than 18 holes
+          </div>
+          <br>
+          <div>
+            Has Water
+            <br>
+            <INPUT TYPE="Checkbox" Name="Has water" Value ="All">All
+              <br>
+              <INPUT TYPE="Checkbox" Name="Has water" Value ="Water only">Water only
+                <br>
+                <INPUT TYPE="Checkbox" Name="Has water" Value ="Exclude water">Exclude water
+          </div>
+          <br>
+          <div>
+            Terrain
+            <br>
+            <INPUT TYPE="Checkbox" Name="Terrain" Value ="Lightly wooded">Lightly wooded
+              <br>
+              <INPUT TYPE="Checkbox" Name="Terrain" Value ="Moderately wooded">Moderately wooded
+                <br>
+                <INPUT TYPE="Checkbox" Name="Terrain" Value ="Heavily wooded">Heavily wooded
+          </div>
+          <br>
+          <div>
+            Landscape
+            <br>
+            <INPUT TYPE="Checkbox" Name="Landscape" Value ="Mostly flat">Mostly flat
+              <br>
+              <INPUT TYPE="Checkbox" Name="Landscape" Value ="Moderately hilly">Moderately hilly
+                <br>
+                <INPUT TYPE="Checkbox" Name="Landscape" Value ="Very hilly">Very hilly
+          </div>
+
+
+
+  </div>
+  
+  <!-- Page content -->
+  <div class="main">
+    ...
+  </div>
+
+<!--     
+          <div>
+              <INPUT TYPE="Checkbox" Name="Metadata" Value ="Private Course">Private Course
+          </div>
+          <div>
+              <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Pay to Play Course">Pay to Play Course
+          </div>
+          <div>
+              <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Reviews
+          </div>
+          <div>
+              <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Favorited/Wishlisted">Favorited / Wishlisted 
+         </div>
+          <div>
+            <INPUT TYPE="Checkbox" Name= "Water Obstacle" Value ="Reviews">Water Obstacle 
         </div>
-    </div>
-    <div class="d-none" id="overlay" onclick="hide(event)"></div>
-    <script>
-      function dropDown(event) {
-          event.target.parentElement.children[1].classList.remove("d-none");
-          document.getElementById("overlay").classList.remove("d-none");
-      }
-      function hide(event) {
-          var items = document.getElementsByClassName('menu');
-          for (let i = 0; i < items.length; i++) {
-              items[i].classList.add("d-none");
-          }
-          document.getElementById("overlay").classList.add("d-none");
-      }
-  </script>
-
-    </div>
-
-  </body>
-  </html>
+          <div>
+              <INPUT TYPE="Checkbox" Name= "Metadata" Value ="Reviews">Played
+          </div> -->
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
