@@ -81,7 +81,7 @@ def find_courses(holes = None):
     if not holes is None:
         db_filter.append({"holes": { "$gte": holes}})
 
-    print(db_filter)
+    # print(db_filter)
 
     # Get some data
     cursor = mongo.db.courses.find({"$and": db_filter}) 
@@ -118,12 +118,9 @@ def get_feature_aggregate():
     feature = request.args.get('feature')
     aggregate = request.args.get('aggregate')
 
-    holes = int(request.headers['holes'])
+    # holes = int(request.headers['holes'])
 
-    print(holes)
-
-    df = find_courses(holes)
-
+    df = find_courses()
 
     df = df.groupby(['state_name', 'state_abbr']).agg([aggregate])[feature]
 
@@ -134,6 +131,18 @@ def get_feature_aggregate():
     # return some data
     return Response(df.to_json(orient="records"), mimetype='application/json')
 
+@app.route("/api/v1/TestData")
+def get_test_data():
+
+    df = find_courses()
+
+    df = df.groupby(['state_name', 'state_abbr'])['rating', 'length_ft'].agg(['mean'])
+
+    df.columns = df.columns.droplevel(1)
+    df = df.reset_index()
+
+    # return some data
+    return Response(df.to_json(orient="records"), mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(debug=True)
