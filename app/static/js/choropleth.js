@@ -6,61 +6,95 @@
 // })
 
 
+///// make
 
-
-
-//// make a basic dictionary that returns a pretty looking title based on the user_var
-
-
-
-
-
-
-function makeTheChoro(data){
-
-
-    ////// for the sake of simplicity, im going to ignore the secondary dataset for now since we only need one for the choropleth
-    //.... heres the code we could use for it though just in case we wanna use the second dataset
-    // ///////////////////////////////////////////////////////////////
-    // var secondary_label =data.secondary_label; 
-    // var secondary_feature = data.data.map(item => item.secondary_feature);
-    // ///////////////////////////////////////////////////////////////
+///// function for returning all the variables used in multiple other functions
+function unpacker(data){
 
     /// makes a list of the state abbreviations that will be used on the pop ups
     var locations = data.data.map(item => item.state_abbr);
 
-
     ///// text for the pop-up when hovering over a state
     var text = data.data.map(item => item.state_name);
+
     // gets the label for the first data point called from the api
     var primary_label=data.primary_label;
 
+    /// gets a list of the main feature well be graphing
+    var primary_feature_list = data.data.map(item => item.primary_feature);
 
-    /// gets a list of 
-    var primary_feature = data.data.map(item => item.primary_feature);
+    //// finding the max number in the data set
+    var max = Math.max.apply(Math,primary_feature_list);
+
+    //// finding the min number in the data set
+    var min = Math.min.apply(Math,primary_feature_list);
+
+    //// finding the state name with the max number in the data set
+    var topStateName = data.data.find(item => item.primary_feature == max).state_name;
+
+    ///// finding the state with the min number in the data set
+    var bottomStateName = data.data.find(item => item.primary_feature == min).state_name;
+
+    return [locations, text, primary_label, primary_feature_list, max,min, topStateName, bottomStateName];
+
+}
+
+function secondaryUnpacker(data){
+    /// makes a list of the state abbreviations that will be used on the pop ups
+    var locations = data.data.map(item => item.state_abbr);
+
+    ///// text for the pop-up when hovering over a state
+    var text = data.data.map(item => item.state_name);
+
+    // gets the label for the first data point called from the api
+    var secondary_label=data.secondary_Label;
+
+    /// gets a list of the main feature well be graphing
+    var secondary_feature_list = data.data.map(item => item.secondary_feature);
 
     
-    ///// this would be uncessary if i replace variables
-    var z_list = primary_feature;
-    //// finding the max in the data set
-    var z_max = Math.max.apply(Math,z_list);
-    //// finding the min in the data set
-    var z_min = Math.min.apply(Math,z_list);
 
-    /// simplified red green blue color scale
+    //// finding the max number in the data set
+    var max = Math.max.apply(Math,secondary_feature_list);
+    // console.log(max);
+    //// finding the min number in the data set
+    var min = Math.min.apply(Math,secondary_feature_list);
+
+    // console.log(min);
+
+    //// finding the state name with the max number in the data set
+    var topStateName = data.data.find(item => item.secondary_feature == max).state_name;
+
+    ///// finding the state with the min number in the data set
+    var bottomStateName = data.data.find(item => item.secondary_feature== min).state_name;
+
+    return [locations, text, secondary_label, secondary_feature_list, max,min, topStateName, bottomStateName];
+
+};
+
+
+
+
+
+
+////// main function for making the choropleth map
+function makeTheChoro(data){
+
+    //////// using the unpacker function to delare all the variables we'll need
+    var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
+
+    /// simplified green yellow red color scale
     var colorScale = [[0, 'green'], [0.5, 'yellow'],[1, 'red']];
-
-
 
         ///// data for the choropleth map
         var mapData = [{
             type: 'choropleth',
             locationmode: 'USA-states',
             locations: locations,
-            z: z_list,
+            z: primary_feature_list,
             text: text,
-            zmin: z_min,// should i make the min the min of the data or zero???
-            zmax: z_max,
+            zmin: min,
+            zmax: max,
             colorscale: colorScale,
             colorbar: {
                 title: primary_label,
@@ -90,34 +124,15 @@ function makeTheChoro(data){
         d3.select('#choropleth').append('div').attr('id','choro_sub1');
         Plotly.newPlot("choro_sub1", mapData, mapLayout, {showLink: false});
 
-
-
-
 }
 
 ///// in this function Im going to make an info card listing the minimum and maximum states
 function choroPane(data){
 
+    //////// using the unpacker function to delare all the variables we'll need
+    var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
 
-    ///// i think i could put all these variable delcarations into an unpacking function
-    var primary_feature_list = data.data.map(item => item.primary_feature)
-
-    var primary_label=data.primary_label;
-
-    var max = Math.max.apply(Math,primary_feature_list);
-
-    var min = Math.min.apply(Math,primary_feature_list);
-
-    var topStateName = data.data.find(item => item.primary_feature == max).state_name;
-
-    var bottomStateName = data.data.find(item => item.primary_feature == min).state_name;
-
-
-
-    // console.log(topStateName);
-
-
-    d3.select('#choropleth')/// selecting the main choropleth,
+    d3.select('#c')/// selecting the main choropleth,
         .append('div').attr('id','choro_sub2').classed('card',true)//// adding the card div
         .append('div').classed('card-body',true).html(`
         <h3>Highest ${primary_label}:</h3> ${topStateName.toUpperCase()} at ${max.toPrecision(3)}<br>
@@ -130,17 +145,71 @@ function choroPane(data){
 
 
 
+function updateChoro(data){
+
+    // //////// using the unpacker function to delare all the variables we'll need
+    // var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
+
+    var [locations, text, secondary_label, secondary_feature_list, max,min, topStateName, bottomStateName]=secondaryUnpacker(data);
+
+
+
+
+            ///// data for the choropleth map
+            var data_update = [{
+                locations: locations,
+                z: secondary_feature_list,
+                text: text,
+                zmin: min,
+                zmax: max,
+                colorbar: {
+                    title: secondary_label,
+                    thickness: 10
+                },
+                marker: {
+                    line:{
+                        color: 'rgb(255,255,255)',
+                        width: 2
+                    }
+                }
+            }];
+            //// layout for the choropleth map
+            var layout_update = {title: secondary_label+' per State'};
+
+
+
+
+
+    Plotly.restyle('choropleth',data_update);
+
+    Plotly.relayout('choropleth',layout_update);
+
+
+
+};
+
+
+
+
+
 d3.json("/api/v1/TestData").get(function(error, data) {
     // console.log(data);
-    //// this function will make the choropleth map
+
+
+    // this function will make the choropleth map
     makeTheChoro(data);
 
-    ///// make function to update choropleth
-
-
-
-    ////// this makes the info pan with the highest and lowest stat
+    //// this makes the info pan with the highest and lowest stat
     choroPane(data);
+
+    //to update choropleth
+    d3.select("filter-btn").on('click',updateChoro(data));
+    
+    // secondaryUnpacker(data);
+
+
+
+
     
 });//// I should add error handling here
 
