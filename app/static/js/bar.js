@@ -22,6 +22,10 @@ function updateBar(dataInfo) {
         x: x,
         y: y,
         text: text,
+        marker: {
+            color: '#F2AD0C'
+        },
+        // width: 1.5
     }];
 
     var layout = {
