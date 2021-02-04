@@ -23,7 +23,7 @@ var chartGroup = svg.append("g")
 
 
       // Add X axis
-var xrange = d3.extent(data.map(function(d){return d.length_ft}));
+  var xrange = d3.extent(data.map(function(d){return d.length_ft}));
 
 var x = d3.scaleLinear()
 .domain(xrange)
