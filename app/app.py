@@ -139,6 +139,8 @@ def get_feature_aggregate():
     else:
         df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
 
+    df = df.rename({primary_metric['parameter']:"primary_feature",secondary_metric['parameter']:"secondary_feature"}, axis='columns')
+
     data = {}
 
     data['primary_label'] = primary_metric['pretty_name']
