@@ -23,6 +23,22 @@
         </div>
     </div>
     <div class="sidenav">
+        <div class="form-group">
+            <label class="group-title">Primary Feature</label>
+            <select class="custom-select custom-select-sm">
+                <option data_agg="mean" value="rating" selected>Rating</option>
+                <option value="length_ft">Length</option>
+                <option value="water">Has Water</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="group-title">Secondary Feature</label>
+            <select class="custom-select custom-select-sm">
+                <option value="rating">Rating</option>
+                <option value="length_ft">Length</option>
+                <option value="water">Has Water</option>
+            </select>
+        </div>
         <div>
             Private
             <br>
@@ -58,35 +74,59 @@
             <br>
             <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="More_than_18_holes">More than 18 holes
         </div>
-        <br>
-        <div>
-            Has Water
-            <br>
-            <INPUT TYPE="Checkbox" Name="Has_water" Value="All">All
-            <br>
-            <INPUT TYPE="Checkbox" Name="Has_water" Value="Water_only">Water only
-            <br>
-            <INPUT TYPE="Checkbox" Name="Has_water" Value="Exclude_water">Exclude water
+        
+        <label class="group-title">Has Water</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="withWater" checked>
+            <label class="form-check-label" for="withWater">
+                Show Courses With Water
+            </label>
         </div>
-        <br>
-        <div>
-            Terrain
-            <br>
-            <INPUT TYPE="Checkbox" Name="Terrain" Value="Lightly_wooded">Lightly wooded
-            <br>
-            <INPUT TYPE="Checkbox" Name="Terrain" Value="Moderately_wooded">Moderately wooded
-            <br>
-            <INPUT TYPE="Checkbox" Name="Terrain" Value="Heavily_wooded">Heavily wooded
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="withoutWater" checked>
+            <label class="form-check-label" for="withoutWater">
+                Show Courses Without Water
+            </label>
         </div>
-        <br>
-        <div>
-            Landscape
-            <br>
-            <INPUT TYPE="Checkbox" Name="Landscape" Value="Mostly_flat">Mostly flat
-            <br>
-            <INPUT TYPE="Checkbox" Name="Landscape" Value="Moderately_hilly">Moderately hilly
-            <br>
-            <INPUT TYPE="Checkbox" Name="Landscape" Value="Very_hilly">Very hilly
+
+        <label class="group-title">Terrain</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="terrain_lWooded" checked>
+            <label class="form-check-label" for="terrain_lWooded">
+                Lightly Wooded
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="terrain_mWooded" checked>
+            <label class="form-check-label" for="terrain_mWooded">
+                Moderately Wooded
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="terrain_hWooded" checked>
+            <label class="form-check-label" for="terrain_hWooded">
+                Heavily Wooded
+            </label>
+        </div>
+
+        <label class="group-title">Landscape</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="landscape_flat" checked>
+            <label class="form-check-label" for="landscape_flat">
+                Mostly Flat
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="landscape_mHilly" checked>
+            <label class="form-check-label" for="landscape_mHilly">
+                Moderately Hilly
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="landscape_vHilly" checked>
+            <label class="form-check-label" for="landscape_vHilly">
+                Very Hilly
+            </label>
         </div>
         <button id="filter-btn" type="button" class="btn btn-default">Filter Data</button>
     </div>
