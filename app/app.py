@@ -103,7 +103,9 @@ def find_courses(holes = None):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    features = list(mongo.db.parameters.find())
+
+    return render_template("index.html", features=features)
 
 @app.route("/api/v1/Courses")
 def get_courses():

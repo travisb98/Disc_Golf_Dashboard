@@ -26,17 +26,17 @@
         <div class="form-group">
             <label class="group-title">Primary Feature</label>
             <select class="custom-select custom-select-sm">
-                <option data_agg="mean" value="rating" selected>Rating</option>
-                <option value="length_ft">Length</option>
-                <option value="water">Has Water</option>
+                {% for f in features %}
+                    <option value="{{ f.parameter }}">{{ f.pretty_name }}</option>
+                {% endfor %}
             </select>
         </div>
         <div class="form-group">
             <label class="group-title">Secondary Feature</label>
             <select class="custom-select custom-select-sm">
-                <option value="rating">Rating</option>
-                <option value="length_ft">Length</option>
-                <option value="water">Has Water</option>
+                {% for f in features[1:] %}
+                    <option value="{{ f.parameter }}">{{ f.pretty_name }}</option>
+                {% endfor %}
             </select>
         </div>
         <div>
@@ -58,21 +58,37 @@
             <br>
             <INPUT TYPE="Checkbox" Name="Pay" Value="Exclude_Pay">Exclude Pay
         </div>
-        <br>
-        <div>
-            # of Holes
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="All">All
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="Less_than_9_holes">Less than 9 holes
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="9_holes">9 holes
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="10-17 holes">10-17 holes
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="18_holes">18 holes
-            <br>
-            <INPUT TYPE="Checkbox" Name="#_of_Holes" Value="More_than_18_holes">More than 18 holes
+
+        <label class="group-title"># of Holes</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="holes_lt9" checked>
+            <label class="form-check-label" for="holes_lt9">
+                Less Than 9 Holes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="holes_9" checked>
+            <label class="form-check-label" for="holes_9">
+                9 Holes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="holes_10to17" checked>
+            <label class="form-check-label" for="holes_10to17">
+                10-17 Holes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="holes_18" checked>
+            <label class="form-check-label" for="holes_18">
+                18 Holes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="holes_gt18" checked>
+            <label class="form-check-label" for="holes_gt18">
+                More than 18 holes
+            </label>
         </div>
         
         <label class="group-title">Has Water</label>

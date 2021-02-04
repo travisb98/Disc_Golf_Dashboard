@@ -57,7 +57,7 @@ function mapDataLayout(data){
     var colorScale = [[0, 'green'], [0.5, 'yellow'],[1, 'red']];
 
     /// simplified green yellow red color scale
-    var colorScale = [[0, 'white'],[1, 'FF8000']];
+    var colorScale = [[0, 'white'],[1, 'F2AD0C']];
 
     ///// data for the choropleth map
     var mapData = [{

@@ -28,6 +28,11 @@
       color: rgb(212, 201, 201)
   }
 
+  .custom-select {
+    display: block;
+    width: auto;
+  }
+
   /* The navigation menu links
   .sidenav a {
     padding: 6px 8px 6px 16px;
