@@ -29,6 +29,9 @@ d3.json("/api/v1/FeatureAggregate?feat1=holes&feat2=rating").get(function(error,
     //// here for testing
     // unpacker(data);
 
+
+    updateBar(data);
+
 });//// I should add error handling here
 
 
