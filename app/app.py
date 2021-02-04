@@ -94,6 +94,7 @@ def find_courses(holes = None):
     # Converting to the DataFrame 
     df = pd.DataFrame(list_cur)
 
+    # Pull state out of the location object and update it to the required format
     df['state_name'] = [states[d['state']].replace(' ', '-').lower() for d in df.location]
     df['state_abbr'] = [d['state'] for d in df.location]
 
@@ -115,22 +116,39 @@ def get_courses():
 @app.route("/api/v1/FeatureAggregate")
 def get_feature_aggregate():
 
-    # here we want to get the value of feature and aggregate (i.e. ?feature=some-value)
-    feature = request.args.get('feature')
-    aggregate = request.args.get('aggregate')
-
-    # holes = int(request.headers['holes'])
-
     df = find_courses()
 
-    df = df.groupby(['state_name', 'state_abbr']).agg([aggregate])[feature]
+    # here we want to get the value of feature and aggregate (i.e. ?feat1=some-value)
+    primary_metric = list(mongo.db.parameters.find({"parameter": request.args.get('feat1')}))[0]
+    secondary_metric = list(mongo.db.parameters.find({"parameter": request.args.get('feat2')}))[0]
 
-    df = df.rename(columns={
-        aggregate:feature
-    }).reset_index()
+    df = df.groupby(['state_name', 'state_abbr']).agg({
+        primary_metric['parameter']: primary_metric['agg'],
+        secondary_metric['parameter']: secondary_metric['agg']
+    })
+
+    df = df.reset_index()
+
+    if primary_metric['is_percent']:
+        df[primary_metric['parameter']] = ["{:.0%}".format(x) for x in df[primary_metric['parameter']]]
+    else:
+        df[primary_metric['parameter']] = [round(x, 2) for x in df[primary_metric['parameter']]]
+
+    if secondary_metric['is_percent']:
+        df[secondary_metric['parameter']] = ["{:.0%}".format(x) for x in df[secondary_metric['parameter']]]
+    else:
+        df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
+
+    data = {}
+
+    data['primary_label'] = primary_metric['pretty_name']
+    data['secondary_label'] = secondary_metric['pretty_name']
+    data['data'] = df.to_dict('records')
+
+    json_data = json.dumps(data)
 
     # return some data
-    return Response(df.to_json(orient="records"), mimetype='application/json')
+    return Response(json_data, mimetype='application/json')
 
 @app.route("/api/v1/TestData")
 def get_test_data():
