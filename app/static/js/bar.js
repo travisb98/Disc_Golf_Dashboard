@@ -1,37 +1,37 @@
 // This function is called from main.js and updated the bar chart on the page
-function updateBar(data) {
-console.log(data)
-    // // Grab the state abbreviations for the labels
-    // var x = data.map(item => item.state_abbr);
+function updateBar(dataInfo) {
 
-    // // This grabs the primary parameter that is being plotted ******
-    // var parameter=Object.keys(data[0])[2];
-    // // console.log(parameter);
+    var data = dataInfo.data;
+    // Sort the data in descending order by primary_feature
+    data.sort((firstNum, secondNum) => secondNum.primary_feature - firstNum.primary_feature);
+
+    var yParam = dataInfo.primary_label;
+
+    // Grab the state abbreviations for the x values
+    var x = data.map(item => item.state_abbr);
    
-    // // gets a list of the main feature well be graphing
-    // var y = data.map(item => item[primary_label]);
-    // // console.log(y);
+    // Grab the primary feature to plot
+    var y = data.map(item => item.primary_feature);
 
-    // // text for the pop-up when hovering over a state
-    // var text = data.map(item => item.state_name);
-    // // console.log(text);
+    // text for the pop-up when hovering over a bar
+    var text = data.map(item => item.state_name);
     
     
-    // var data = [{
-    //     type: 'bar',
-    //     x: x,
-    //     y: y,
-    //     text: text,
-    // }];
+    var data = [{
+        type: 'bar',
+        x: x,
+        y: y,
+        text: text,
+    }];
 
-    // var layout = {
-    //     title: primary_label + " by State",
-    //     xaxis: {
-    //         title: {
-    //           text: primary_label,
-    //         }
-    //     }
-    // };
+    var layout = {
+        title: yParam + " by State",
+        xaxis: {
+            title: {
+              text: yParam,
+            }
+        }
+    };
 
-    // Plotly.newPlot('bar', data, layout);
+    Plotly.newPlot('bar', data, layout);
 }
