@@ -1,0 +1,54 @@
+[{
+    "parameter": "private",
+    "pretty_name": "Percent of Private Courses",
+    "agg": "mean",
+    "is_percent": true
+    },
+    {
+    "parameter": "pay",
+    "pretty_name": "Percent of Pay to Play Courses",
+    "agg": "mean",
+    "is_percent": true
+    },
+    {
+    "parameter": "holes",
+    "pretty_name": "Average Number of Holes Per Course",
+    "agg": "mean",
+    "is_percent": false
+    },
+    {
+    "parameter": "water",
+    "pretty_name": "Percent of Courses with Water Holes",
+    "agg": "mean",
+    "is_percent": true
+    },
+    {
+    "parameter": "water_holes",
+    "pretty_name": "Average Number of Holes with Water",
+    "agg": "mean",
+    "is_percent": false
+    },
+    {
+    "parameter": "rating",
+    "pretty_name": "Average Rating Among Courses",
+    "agg": "mean",
+    "is_percent": false
+    },
+    {
+    "parameter": "length_ft",
+    "pretty_name": "Average Course Length (Ft)",
+    "agg": "mean",
+    "is_percent": false
+    },
+    {
+    "parameter": "water_holes",
+    "pretty_name": "Average Number of Holes with Water",
+    "agg": "mean",
+    "is_percent": false
+    },
+    {
+    "parameter": "reviews",
+    "pretty_name": "Median Number of Course Reviews",
+    "agg": "median",
+    "is_percent": false
+    }]
