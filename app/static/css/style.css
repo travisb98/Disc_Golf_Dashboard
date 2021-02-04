@@ -1,16 +1,11 @@
 
 .jumbotron{
-    /* Image in the center of container */
-    /* background-position: center center; */
-
     background-repeat: no-repeat;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height:400px;
-}
-.jumbotron{
+    background-position: center;
+    height: 128px;
     text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black; 
     color: white;
+    margin-bottom: 0px;
 }
 
 /* The sidebar menu */
@@ -49,7 +44,7 @@
   
   /* Style page content */
   .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
+    margin-left: 280px; /* Same as the width of the sidebar */
     padding: 0px 10px;
   }
 
@@ -62,5 +57,18 @@
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+  }
+
+  body {
+    background-color: black;
+  }
+
+  .chart{
+    margin: 10px;
+  }
+
+  .py-5 {
+    padding-top: 0px!important;
+    padding-bottom: 0px!important;
   }
   
