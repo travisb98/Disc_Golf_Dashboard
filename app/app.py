@@ -129,15 +129,8 @@ def get_feature_aggregate():
 
     df = df.reset_index()
 
-    if primary_metric['is_percent']:
-        df[primary_metric['parameter']] = ["{:.0%}".format(x) for x in df[primary_metric['parameter']]]
-    else:
-        df[primary_metric['parameter']] = [round(x, 2) for x in df[primary_metric['parameter']]]
-
-    if secondary_metric['is_percent']:
-        df[secondary_metric['parameter']] = ["{:.0%}".format(x) for x in df[secondary_metric['parameter']]]
-    else:
-        df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
+    df[primary_metric['parameter']] = [round(x, 2) for x in df[primary_metric['parameter']]]
+    df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
 
     df = df.rename({primary_metric['parameter']:"primary_feature",secondary_metric['parameter']:"secondary_feature"}, axis='columns')
 
