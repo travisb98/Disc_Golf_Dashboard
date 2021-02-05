@@ -12,16 +12,6 @@
 
 </head>
 <body>
-    <div class="container py-5">
-        <div class="jumbotron text-white jumbotron-image shadow"
-            style="background-image: url(https://cdn.buttercms.com/o9NBeurtRZi82330SO3f);">
-            <h2 class="mb-4">
-                Disc Golf Dashboard
-            </h2>
-            <p class="mb-4">
-                Use the interactive side menu to select dataset, then click submit
-        </div>
-    </div>
     <div class="sidenav">
         <div class="form-group">
             <label class="group-title">Primary Feature</label>
@@ -148,9 +138,32 @@
     </div>
     <!-- Page content -->
     <div class="main">
-        <div id="bar"></div>
-        <div id="scatter"></div>
-        <div id="choropleth"></div>
+        <div class="container py-5">
+            <div class="jumbotron text-white jumbotron-image shadow"
+                style="background-image: url(https://cdn.buttercms.com/o9NBeurtRZi82330SO3f);">
+                <h2 class="mb-4">
+                    Disc Golf Dashboard
+                </h2>
+                <p class="mb-4">
+                    Use the interactive side menu to select dataset, then click submit
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div id="choropleth" class="chart"></div>
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <div id="scatter" class="chart"></div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <div id="bar" class="chart"></div>
+            </div>
+        </div>
+        
     </div>
     <!--     
           <div>
