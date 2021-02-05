@@ -17,7 +17,7 @@
             <label class="group-title">Primary Feature</label>
             <select id="primarySelection" class="custom-select custom-select-sm">
                 {% for f in features %}
-                    <option value="{{ f.parameter }}">{{ f.pretty_name }}</option>
+                    <option value="{{ f.parameter }}" id="{{ f.parameter }}">{{ f.pretty_name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -25,7 +25,7 @@
             <label class="group-title">Secondary Feature</label>
             <select id="secondarySelection" class="custom-select custom-select-sm">
                 {% for f in features[1:] %}
-                    <option value="{{ f.parameter }}">{{ f.pretty_name }}</option>
+                    <option value="{{ f.parameter }}" id="{{ f.parameter }}">{{ f.pretty_name }}</option>
                 {% endfor %}
             </select>
         </div>
