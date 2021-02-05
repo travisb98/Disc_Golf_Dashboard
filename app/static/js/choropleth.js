@@ -9,7 +9,6 @@
 ///// function for returning all the variables used in multiple other functions
 function unpacker(data){
 
-
     /////// i need to create 2 input variables. One for the feature and one for the aggregate function(mean, etc)
 
     /// makes a list of the state abbreviations that will be used on the pop ups
@@ -70,7 +69,6 @@ function mapDataLayout(data){
         zmax: max,
         colorscale: colorScale,
         colorbar: {
-            title: primary_label,
             thickness: 10
         },
         marker: {
@@ -82,7 +80,7 @@ function mapDataLayout(data){
     }];
     //// layout for the choropleth map
     var mapLayout = {
-        title: primary_label+' per State',
+        title: primary_label+' by State',
         dragmode:false,////// turns off scroll zoom and pan
         geo:{
             scope: 'usa'
@@ -90,48 +88,13 @@ function mapDataLayout(data){
     };
 
     // return [mapData, mapLayout];
-    return Plotly.react("choro_sub1", mapData, mapLayout, {showLink: false});
+    return Plotly.react("choropleth", mapData, mapLayout, {showLink: false});
 };
 
 
 
-////// main function for making the choropleth map
-function makeTheChoro(data){
-    ///// adds a new sub div so I can add a min and a max pane
-    d3.select('#choropleth').append('div').attr('id','choro_sub1');
 
-    /////// runs the map react function
-    mapDataLayout(data);
 
-}
-
-///// function that creates an info pane about the highest and lowest states
-function choroPane(data){
-
-    //////// using the unpacker function to delare all the variables we'll need
-    var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
-
-    d3.select('#choropleth')/// selecting the main choropleth,
-        .append('div').attr('id','choro_sub2').classed('card',true)//// adding the card div
-        .append('div').classed('card-body',true).html(`
-        <h3>Highest ${primary_label}:</h3> ${topStateName.toUpperCase()} at ${max.toPrecision(3)}<br>
-        <h3>Lowest ${primary_label}:</h3>${bottomStateName.toUpperCase()} at ${min.toPrecision(3)}`);////appending the card body div . max is shortened  using toPrecision()
-};
-
-function updatePane(data){
-    ///////////// i should make a dfunction to update the pane here
-
-};
-
-//// function to update the chropleth map
-function updateChoro(data){
-
-    // alert("update function was triggered");
-    console.log("update function was triggered")
-
-    mapDataLayout(data)
-    
-};
 
 
 
