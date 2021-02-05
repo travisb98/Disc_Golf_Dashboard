@@ -1,23 +1,18 @@
 
-// function filterData() {
-//     d3.event.preventDefault();
+function getFilters() {
+    var filters = {}
 
-//     d3.select("#startDate").property("value")
+    var sidebar = d3.select(".sidebar");
 
-//     d3.json("/api/v1/FeatureAggregate?feature=holes&aggregate=mean")
-//     .header("holes", 19)
-//     .get(function(error, data) {
-//         console.log(data);
-//     })
+    console.log(sidebar);
 
-// }
-
-
-
-
+    return JSON.stringify(filters);
+}
 
 // ///// api that runs on start, creating the choropleth and the info card
-d3.json("/api/v1/FeatureAggregate?feat1=holes&feat2=rating").get(function(error, data) {
+d3.json("/api/v1/FeatureAggregate?feat1=holes&feat2=rating")
+.header("filters", getFilters())
+.get(function(error, data) {
     // console.log("Start up api call");
     // console.log(data);
     //// makes choropleth map
@@ -95,13 +90,11 @@ filter_button.on('click',function(){
     console.log('Secondary Value');
     console.log(secondaryUserValue)
     console.log("-------------");
-    console.log("-------------");    
+    console.log("-------------");
 
-  
-
-
-
-    d3.json("/api/v1/FeatureAggregate?feat1=rating&feat2=holes").get(function(error, data){
+    d3.json("/api/v1/FeatureAggregate?feat1=rating&feat2=holes")
+    
+    .get(function(error, data){
         // console.log("Second API call triggered button")
         // console.log(data);
 

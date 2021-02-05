@@ -28,6 +28,10 @@
     width: auto;
   }
 
+  .form-group {
+    margin-bottom: 0px;
+  }
+
   /* The navigation menu links
   .sidenav a {
     padding: 6px 8px 6px 16px;

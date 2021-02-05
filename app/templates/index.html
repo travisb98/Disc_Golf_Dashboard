@@ -29,29 +29,38 @@
                 {% endfor %}
             </select>
         </div>
-        <div>
-            Private
-            <br>
-            <INPUT TYPE="Checkbox" Name="Private" Value="All">All (default)
-            <br>
-            <INPUT TYPE="Checkbox" Name="Private" Value="Private_Only">Private Only
-            <br>
-            <INPUT TYPE="Checkbox" Name="Private" Value="Exclude_Private">Exclude Private
+
+        <label class="group-title">Private</label>
+        <div class="form-check">
+            <input class="form-check-input filled-in" type="checkbox" value="" id="private_public" checked>
+            <label class="form-check-label" for="private_public">
+                Show Public Courses
+            </label>
         </div>
-        <br>
-        <div>
-            Pay
-            <br>
-            <INPUT TYPE="Checkbox" Name="Pay" Value="All">All
-            <br>
-            <INPUT TYPE="Checkbox" Name="Pay" Value="Pay_Only">Pay Only
-            <br>
-            <INPUT TYPE="Checkbox" Name="Pay" Value="Exclude_Pay">Exclude Pay
+        <div class="form-check">
+            <input class="form-check-input filled-in" type="checkbox" value="" id="private_private" checked>
+            <label class="form-check-label" for="private_private">
+                Show Private Courses
+            </label>
+        </div>
+
+        <label class="group-title">Pay</label>
+        <div class="form-check">
+            <input class="form-check-input filled-in" type="checkbox" value="" id="pay_free" checked>
+            <label class="form-check-label" for="pay_free">
+                Show Free Courses
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input filled-in" type="checkbox" value="" id="pay_paid" checked>
+            <label class="form-check-label" for="pay_paid">
+                Show Paid Courses
+            </label>
         </div>
 
         <label class="group-title"># of Holes</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="holes_lt9" checked>
+            <input class="form-check-input filled-in" type="checkbox" value="" id="holes_lt9" checked>
             <label class="form-check-label" for="holes_lt9">
                 Less Than 9 Holes
             </label>
@@ -83,14 +92,14 @@
         
         <label class="group-title">Has Water</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="withWater" checked>
-            <label class="form-check-label" for="withWater">
+            <input class="form-check-input" type="checkbox" value="" id="water_with" checked>
+            <label class="form-check-label" for="water_with">
                 Show Courses With Water
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="withoutWater" checked>
-            <label class="form-check-label" for="withoutWater">
+            <input class="form-check-input" type="checkbox" value="" id="water_without" checked>
+            <label class="form-check-label" for="water_without">
                 Show Courses Without Water
             </label>
         </div>

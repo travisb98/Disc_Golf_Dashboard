@@ -118,6 +118,8 @@ def get_courses():
 @app.route("/api/v1/FeatureAggregate")
 def get_feature_aggregate():
 
+    # filters = json.loads(request.headers["Filters"])
+
     df = find_courses()
 
     # here we want to get the value of feature and aggregate (i.e. ?feat1=some-value)
