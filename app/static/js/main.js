@@ -91,7 +91,10 @@ function initCharts() {
        updateScatter(data)
    });
 
-    d3.select("#loader").style("display", "none");
+   setTimeout(function () {
+        d3.select("#loader").style("display", "none");
+    }, 2000);
+    
 }
 
 
