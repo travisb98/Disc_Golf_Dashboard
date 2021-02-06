@@ -30,9 +30,14 @@ function updateBar(dataInfo) {
 
     var layout = {
         title: yParam + " by State",
-        xaxis: {
+        yaxis: {
             title: {
               text: yParam,
+            }
+        },
+        xaxis: {
+            title: {
+              text: "State",
             }
         }
     };
