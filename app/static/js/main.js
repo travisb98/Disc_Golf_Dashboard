@@ -76,6 +76,7 @@ d3.json("/api/v1/FeatureAggregate?feat1=holes&feat2=rating")
     //// makes bar graph
     updateBar(data);
 
+    updateScatter(data)
 });
 
 ///// defining the filter button. 
@@ -114,7 +115,8 @@ primaryUserSelection.on('change',function(){
 
 ///// when the filter button gets clicked....
 filter_button.on('click',function(){
-
+            //// function to update scatter plot
+          
     //// grabs the values from the primary selection
     var primaryUserValue = primaryUserSelection.node().value;
 
@@ -128,8 +130,7 @@ filter_button.on('click',function(){
         ///// fucntion that updates the choropleth map
         mapDataLayout(data);
 
-        
-        
+        updateScatter(data)
     });
 
 });
