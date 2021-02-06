@@ -37,5 +37,5 @@ function updateBar(dataInfo) {
         }
     };
 
-    Plotly.newPlot('bar', data, layout);
+    Plotly.react('bar', data, layout);
 }

@@ -133,8 +133,12 @@ filter_button.on('click',function(){
 
         console.log(data)
         
-        ///// fucntion that updates the choropleth map
+        // fucntion that updates the choropleth map
         mapDataLayout(data);
+
+        // updates bar graph
+        updateBar(data);
+
 
         updateScatter(data)
     });
