@@ -1,3 +1,8 @@
+#title{
+margin-left: -30px;
+margin-top: -65px;
+
+}
 
 .jumbotron{
     background-repeat: no-repeat;
@@ -77,3 +82,9 @@
     padding-bottom: 0px!important;
   }
   
+  #filter-btn{
+    background-color: blue;
+    color: white;
+    margin-top: 7px;
+    margin-left: -2px;
+  }
