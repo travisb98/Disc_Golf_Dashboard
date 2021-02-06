@@ -118,12 +118,11 @@ width: fit-content;
   body {
     background-color: black;
   }
-#scatter {
-  background-color: white;
-}
+
   .chart{
     margin: 10px;
     height: 385px;
+    background-color: white;
   }
 
   .py-5 {
