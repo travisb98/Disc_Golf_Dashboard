@@ -66,21 +66,37 @@ function getFilters() {
     return JSON.stringify(filters);
 }
 
-// ///// api that runs on start, creating the choroplets and graphs
-d3.json("/api/v1/FeatureAggregate?feat1=holes&feat2=rating")
-.header("filters", getFilters())
-.get(function(error, data) {
-    // error handling 
-    if (error) return console.warn(error);
+function initCharts() {
 
-    //// create choropleth
-    mapDataLayout(data);
+   //// grabs the values from the primary selection
+   var primaryUserValue = primaryUserSelection.node().value;
 
-    //// makes bar graph
-    updateBar(data);
+   /////// grabs the secondary value from the selection
+   var secondaryUserValue = secondaryUserSelection.node().value;
 
-    updateScatter(data)
-});
+   ///.....api call based on the values the users selected
+   d3.json(`/api/v1/FeatureAggregate?feat1=${primaryUserValue}&feat2=${secondaryUserValue}`)
+   .header("filters", getFilters())
+   .get(function(error, data){
+
+       console.log(data)
+       
+       // fucntion that updates the choropleth map
+       mapDataLayout(data);
+
+       // updates bar graph
+       updateBar(data);
+
+
+       updateScatter(data)
+   });
+
+   setTimeout(function () {
+        d3.select("#loader").style("display", "none");
+    }, 2000);
+    
+}
+
 
 ///// defining the filter button. 
 var filter_button = d3.select("#filter-btn");
@@ -119,28 +135,8 @@ primaryUserSelection.on('change',function(){
 ///// when the filter button gets clicked....
 filter_button.on('click',function(){
             //// function to update scatter plot
-          
-    //// grabs the values from the primary selection
-    var primaryUserValue = primaryUserSelection.node().value;
-
-    /////// grabs the secondary value from the selection
-    var secondaryUserValue = secondaryUserSelection.node().value;
-
-    ///.....api call based on the values the users selected
-    d3.json(`/api/v1/FeatureAggregate?feat1=${primaryUserValue}&feat2=${secondaryUserValue}`)
-    .header("filters", getFilters())
-    .get(function(error, data){
-
-        console.log(data)
-        
-        // fucntion that updates the choropleth map
-        mapDataLayout(data);
-
-        // updates bar graph
-        updateBar(data);
-
-
-        updateScatter(data)
-    });
+    d3.select("#loader").style("display", "flex");      
+    
+    initCharts()
 
 });

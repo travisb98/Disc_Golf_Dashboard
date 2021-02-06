@@ -1,5 +1,10 @@
 function updateScatter(dataInfo) {
   // console.log(dataInfo);
+  var myselect = d3.select('#scatter');
+if (!myselect.empty()) {
+     
+
+
   var svgWidth = 610;
   var svgHeight = 385;
 
@@ -66,5 +71,7 @@ function updateScatter(dataInfo) {
       .attr("y", -margin.left+80)
       .attr("x", -margin.top)
       .text(ytitle);
+    }
+  
 
   };

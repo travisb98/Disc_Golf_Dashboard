@@ -4,6 +4,12 @@
 // .get(function(error, data) {
 //     console.log(data);
 // })
+//// makes output titlecase
+function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return (word.charAt(0).toUpperCase() + word.slice(1));
+    }).join(' ');
+  }
 
 
 ///// function for returning all the variables used in multiple other functions
@@ -12,11 +18,11 @@ function unpacker(data){
     /////// i need to create 2 input variables. One for the feature and one for the aggregate function(mean, etc)
 
     /// makes a list of the state abbreviations that will be used on the pop ups
-    var locations = data.data.map(item => item.state_abbr);
+    var locations = data.data.map(item => item.state_abbr.toUpperCase());
     // console.log(locations);
 
     ///// text for the pop-up when hovering over a state
-    var text = data.data.map(item => item.state_name);
+    var text = data.data.map(item => titleCase(item.state_name.replace("-","")));
     // console.log(text);
 
     // gets the label for the first data point called from the api
@@ -42,7 +48,7 @@ function unpacker(data){
     var bottomStateName = data.data.find(item => item.primary_feature == min).state_name;
     // console.log(bottomStateName);
 
-    return [locations, text, primary_label, primary_feature_list, max,min, topStateName, bottomStateName];
+    return [locations, text, primary_label, primary_feature_list, max,min];
 
 }
 
@@ -50,13 +56,10 @@ function unpacker(data){
 function mapDataLayout(data){
 
     //////// using the unpacker function to delare all the variables we'll need
-    var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
+    var [locations,text,primary_label,primary_feature_list,max,min]=unpacker(data);
 
     /// simplified green yellow red color scale
-    var colorScale = [[0, 'green'], [0.5, 'yellow'],[1, 'red']];
-
-    /// simplified green yellow red color scale
-    var colorScale = [[0, 'white'],[1, 'F2AD0C']];
+    var colorScale = [[0, 'FCEBC2'],[1, 'F2AD0C']];
 
     ///// data for the choropleth map
     var mapData = [{
@@ -73,8 +76,8 @@ function mapDataLayout(data){
         },
         marker: {
             line:{
-                color: 'rgb(255,255,255)',
-                width: 2
+                color: 'rgb(0,0,0)',
+                width: 1
             }
         }
     }];

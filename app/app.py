@@ -139,8 +139,7 @@ def find_courses(filters = None):
     # Get some data
     cursor = mongo.db.courses.find({"$and": db_filter}) 
     
-    # Converting cursor to the list of  
-    # dictionaries 
+    # Converting cursor to the list of dictionaries 
     list_cur = list(cursor) 
     
     if (len(list_cur) > 0):

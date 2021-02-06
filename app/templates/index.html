@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="static/css/style.css">
 
 </head>
-<body>
+<body onload="initCharts()">
+    <div id="loader">
+        <img id="loader-gif" src="static/images/frisbee-loader.gif" alt="description of gif" /> 
+        <h1 class="loading">Loading Data</h1>
+    </div>
     <div class="sidenav">
         <div class="form-group">
             <label class="group-title">Primary Feature</label>
