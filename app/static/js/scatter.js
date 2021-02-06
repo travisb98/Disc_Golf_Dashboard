@@ -63,7 +63,8 @@ function createScatter(dataInfo) {
       .attr("cx", function (d) { return x(d.secondary_feature); } )
       .attr("cy", function (d) {  return y(d.primary_feature); } )
       .attr("r", 12)
-      .style("fill", "#69b3a2");
+      .style("stroke", "black")
+      .style("fill", "#F2AD0C");
 
 
   // Add X axis label:
@@ -149,7 +150,8 @@ function updateScatter(dataInfo) {
       .attr("cx", function (d) { return x(d.secondary_feature); } )
       .attr("cy", function (d) {  return y(d.primary_feature); } )
       .attr("r", 12)
-      .style("fill", "#69b3a2");
+      .style("stroke", "black")
+      .style("fill", "#F2AD0C");
 
 
   // Add X axis label:
