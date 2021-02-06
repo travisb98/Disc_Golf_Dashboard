@@ -1,20 +1,21 @@
 function updateScatter(dataInfo) {
-  console.log(dataInfo);
-  var svgWidth = 800;
-  var svgHeight = 600;
+  // console.log(dataInfo);
+  var svgWidth = 610;
+  var svgHeight = 385;
 
-  var margin = { top: 20, right: 100, bottom: 60, left: 60 };
+  var margin = { top: 30, right: 60, bottom: 60, left: 60 };
 
   var width = svgWidth - margin.left - margin.right;
   var height = svgHeight - margin.top - margin.bottom;
-  // var xtitle= dataInfo.secondary_label;
-  // var ytitle= dataInfo.primary_label;
+  var xtitle= dataInfo.secondary_label;
+  var ytitle= dataInfo.primary_label;
   // console.log(ytitle);
   
   var svg = d3.select("#scatter")
     .append("svg")
       .attr("width", svgWidth)
-      .attr("height", svgHeight);
+      .attr("height", svgHeight)
+      .attr("class", "graph-svg-component");
 
   var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -32,7 +33,6 @@ function updateScatter(dataInfo) {
     .call(d3.axisBottom(x));
 
   var yrange = d3.extent(dataInfo.data.map(function(d){return d.primary_feature}));
-    console.log(d.primary_feature)
     var y = d3.scaleLinear()
     .domain(yrange)
     .nice()
@@ -53,18 +53,18 @@ function updateScatter(dataInfo) {
       .style("fill", "#69b3a2");
 
 
-  // // Add X axis label:
-  // svg.append("text")
-  //     .attr("text-anchor", "end")
-  //     .attr("x", width)
-  //     .attr("y", height + margin.top + 40)
-  //     .text(xtitle);
-  // // Y axis label:
-  // svg.append("text")
-  //     .attr("text-anchor", "end")
-  //     .attr("transform", "rotate(-90)")
-  //     .attr("y", -margin.left+80)
-  //     .attr("x", -margin.top)
-  //     .text(ytitle);
+  // Add X axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height + margin.top + 40)
+      .text(xtitle);
+  // Y axis label:
+  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+80)
+      .attr("x", -margin.top)
+      .text(ytitle);
 
   };
