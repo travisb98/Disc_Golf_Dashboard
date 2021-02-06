@@ -14,7 +14,7 @@ function updateBar(dataInfo) {
     var y = data.map(item => item.primary_feature);
 
     // text for the pop-up when hovering over a bar
-    var text = data.map(item => item.state_name);
+    var text = data.map(item => titleCase(item.state_name.replace("-"," ")));
     
     
     var data = [{
