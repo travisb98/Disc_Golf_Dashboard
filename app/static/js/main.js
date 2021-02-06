@@ -2,6 +2,7 @@
 function getFilters() {
     var filters = {}
 
+    // Get all filter checkbox values
     var showPublic = d3.select("#private_public").property('checked');
     var showPrivate = d3.select("#private_private").property('checked');
 
@@ -25,6 +26,7 @@ function getFilters() {
     var showModeratelyHilly = d3.select("#landscape_mHilly").property('checked'); 
     var showVeryHilly = d3.select("#landscape_vHilly").property('checked');
 
+    // Add all values to a "filters" object
     filters["private"] = {
         "showPublic": showPublic,
         "showPrivate": showPrivate
@@ -60,6 +62,7 @@ function getFilters() {
         "showVeryHilly": showVeryHilly
     };
 
+    // return filter object as a JSON string
     return JSON.stringify(filters);
 }
 
@@ -125,8 +128,11 @@ filter_button.on('click',function(){
 
     ///.....api call based on the values the users selected
     d3.json(`/api/v1/FeatureAggregate?feat1=${primaryUserValue}&feat2=${secondaryUserValue}`)
+    .header("filters", getFilters())
     .get(function(error, data){
 
+        console.log(data)
+        
         ///// fucntion that updates the choropleth map
         mapDataLayout(data);
 

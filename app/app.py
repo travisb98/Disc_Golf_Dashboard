@@ -74,15 +74,67 @@ states = {
     "WY": "Wyoming"
 }
 
-def find_courses(holes = None):
+def find_courses(filters = None):
 
-    # _id will always be true but we may not have any other filter value
-    db_filter = [{ "_id" : { "$exists": True } }]   
+    # Set base filter value in case we pass in no additional filter
+    db_filter = [{ "_id" : { "$exists": True } }]
 
-    if not holes is None:
-        db_filter.append({"holes": { "$gte": holes}})
+    if (filters is not None):
 
-    # print(db_filter)
+        if (not all(filters["private"].values())):
+            if (filters["private"]['showPublic']):
+                db_filter.append({"private": False})
+            else:
+                db_filter.append({"private": True})
+
+        if (not all(filters["pay"].values())):
+            if (filters["pay"]['showFree']):
+                db_filter.append({"pay": False})
+            else:
+                db_filter.append({"pay": True})
+
+        holes = []
+        if (not all(filters["holes"].values())):
+            if (filters["holes"]['showLessThan9']):
+                holes.extend(range(1, 9))
+            if (filters["holes"]['show9']):
+                holes.append(9)
+            if (filters["holes"]['show10To17']):
+                holes.extend(range(10, 18))
+            if (filters["holes"]['show18']):
+                holes.append(18)
+            if (filters["holes"]['showMoreThan18']):
+                holes.extend(range(19, 101))
+
+            db_filter.append({"holes": {"$in": holes}})
+
+        if (not all(filters["water"].values())):
+            if (filters["water"]['showWithWater']):
+                db_filter.append({"water": True})
+            else:
+                db_filter.append({"water": False})
+
+        terrain = []
+        if (not all(filters["terrain"].values())):
+            if (filters["terrain"]['showLightlyWooded']):
+                terrain.append('Lightly Wooded')
+            if (filters["terrain"]['showModeratelyWooded']):
+                terrain.append('Moderately Wooded')
+            if (filters["terrain"]['showHeavilyWooded']):
+                terrain.append('Heavily Wooded')
+            
+            db_filter.append({"terrain": {"$in": terrain}})
+
+        landscape = []
+        if (not all(filters["landscape"].values())):
+            if (filters["landscape"]['showMostlyFlat']):
+                landscape.append('Mostly Flat')
+            if (filters["landscape"]['showModeratelyHilly']):
+                landscape.append('Moderately Hilly')
+            if (filters["landscape"]['showVeryHilly']):
+                landscape.append('Very Hilly')
+            
+            db_filter.append({"landscape": {"$in": landscape}})
 
     # Get some data
     cursor = mongo.db.courses.find({"$and": db_filter}) 
@@ -91,14 +143,17 @@ def find_courses(holes = None):
     # dictionaries 
     list_cur = list(cursor) 
     
-    # Converting to the DataFrame 
-    df = pd.DataFrame(list_cur)
+    if (len(list_cur) > 0):
+        # Converting to the DataFrame 
+        df = pd.DataFrame(list_cur)
 
-    # Pull state out of the location object and update it to the required format
-    df['state_name'] = [states[d['state']].replace(' ', '-').lower() for d in df.location]
-    df['state_abbr'] = [d['state'] for d in df.location]
+        # Pull state out of the location object and update it to the required format
+        df['state_name'] = [states[d['state']].replace(' ', '-').lower() for d in df.location]
+        df['state_abbr'] = [d['state'] for d in df.location]
 
-    return df.drop(columns=['_id', 'location'])
+        return df.drop(columns=['_id', 'location'])
+    else:
+        return pd.DataFrame()
 
 
 @app.route("/")
@@ -118,38 +173,44 @@ def get_courses():
 @app.route("/api/v1/FeatureAggregate")
 def get_feature_aggregate():
 
-    # filters = json.loads(request.headers["Filters"])
+    filters = json.loads(request.headers["Filters"])
 
-    df = find_courses()
+    df = find_courses(filters)
 
     # here we want to get the value of feature and aggregate (i.e. ?feat1=some-value)
     primary_metric = list(mongo.db.parameters.find({"parameter": request.args.get('feat1')}))[0]
     secondary_metric = list(mongo.db.parameters.find({"parameter": request.args.get('feat2')}))[0]
 
-    df = df.groupby(['state_name', 'state_abbr']).agg({
-        primary_metric['parameter']: primary_metric['agg'],
-        secondary_metric['parameter']: secondary_metric['agg']
-    })
-
-    df = df.reset_index()
-
-    if primary_metric['is_percent']:
-        df[primary_metric['parameter']] = [round(x*100, 2) for x in df[primary_metric['parameter']]]
-    else:
-        df[primary_metric['parameter']] = [round(x, 2) for x in df[primary_metric['parameter']]]
-
-    if secondary_metric['is_percent']:
-        df[secondary_metric['parameter']] = [round(x*100, 2)  for x in df[secondary_metric['parameter']]]
-    else:
-        df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
-
-    df = df.rename({primary_metric['parameter']:"primary_feature",secondary_metric['parameter']:"secondary_feature"}, axis='columns')
-
     data = {}
 
     data['primary_label'] = primary_metric['pretty_name']
     data['secondary_label'] = secondary_metric['pretty_name']
-    data['data'] = df.to_dict('records')
+
+    if (len(df) > 0):
+
+        df = df.groupby(['state_name', 'state_abbr']).agg({
+            primary_metric['parameter']: primary_metric['agg'],
+            secondary_metric['parameter']: secondary_metric['agg']
+        })
+
+        df = df.reset_index()
+
+        if primary_metric['is_percent']:
+            df[primary_metric['parameter']] = [round(x*100, 2) for x in df[primary_metric['parameter']]]
+        else:
+            df[primary_metric['parameter']] = [round(x, 2) for x in df[primary_metric['parameter']]]
+
+        if secondary_metric['is_percent']:
+            df[secondary_metric['parameter']] = [round(x*100, 2)  for x in df[secondary_metric['parameter']]]
+        else:
+            df[secondary_metric['parameter']] = [round(x, 2) for x in df[secondary_metric['parameter']]]
+
+        df = df.rename({primary_metric['parameter']:"primary_feature",secondary_metric['parameter']:"secondary_feature"}, axis='columns')
+
+        
+        data['data'] = df.to_dict('records')
+    else:
+        data['data'] = df.to_dict()
 
     json_data = json.dumps(data)
 
