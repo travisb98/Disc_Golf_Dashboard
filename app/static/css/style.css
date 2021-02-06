@@ -97,6 +97,24 @@ width: fit-content;
   .sidenav a:hover {
     color: #f1f1f1;
   }
+
+  .custom-control-input-orange:focus~.custom-control-label::before {
+    border-color: #F2AD0C !important;
+  }
+  
+  .custom-control-input-orange:checked~.custom-control-label::before {
+    border-color: #F2AD0C !important;
+    background-color: #F2AD0C !important;
+  }
+  
+  .custom-control-input-orange:focus:not(:checked)~.custom-control-label::before {
+    border-color: #F2AD0C !important;
+  }
+  
+  .custom-control-input-orange:not(:disabled):active~.custom-control-label::before {
+    background-color: #f2ad0c5e !important;
+    border-color: #f2ad0c5e !important;
+  }
   
   /* Style page content */
   .main {
@@ -136,7 +154,7 @@ width: fit-content;
   
   
   #filter-btn{
-    background-color: blue;
+    background-color: #F2AD0C;
     color: white;
     margin-top: 7px;
     margin-left: -2px;
