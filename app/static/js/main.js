@@ -97,6 +97,8 @@ function initCharts() {
     
 }
 
+    createScatter(data)
+});
 
 ///// defining the filter button. 
 var filter_button = d3.select("#filter-btn");
