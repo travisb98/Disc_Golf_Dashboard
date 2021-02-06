@@ -155,7 +155,8 @@ width: fit-content;
   
   #filter-btn{
     background-color: #F2AD0C;
-    color: white;
-    margin-top: 7px;
-    margin-left: -2px;
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: -2px
   }
