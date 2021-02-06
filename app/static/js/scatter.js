@@ -69,9 +69,7 @@ function createScatter(dataInfo) {
 
   // Add X axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width)
-      .attr("y", height + margin.top + 40)
+      .attr("transform", `translate(${width / 2}, ${height + 75})`)
       .text(xtitle);
   // Y axis label:
   svg.append("text")
@@ -156,9 +154,7 @@ function updateScatter(dataInfo) {
 
   // Add X axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width)
-      .attr("y", height + margin.top + 40)
+      .attr("transform", `translate(${width / 2}, ${height + 75})`)
       .text(xtitle);
   // Y axis label:
   svg.append("text")
