@@ -2,9 +2,63 @@
 function getFilters() {
     var filters = {}
 
-    var sidebar = d3.select(".sidebar");
+    var showPublic = d3.select("#private_public").property('checked');
+    var showPrivate = d3.select("#private_private").property('checked');
 
-    console.log(sidebar);
+    var showFree = d3.select("#pay_free").property('checked');
+    var showPaid = d3.select("#pay_paid").property('checked');
+
+    var showLessThan9 = d3.select("#holes_lt9").property('checked');
+    var show9 = d3.select("#holes_9").property('checked');
+    var show10To17 = d3.select("#holes_10to17").property('checked');
+    var show18 = d3.select("#holes_18").property('checked');
+    var showMoreThan18 = d3.select("#holes_gt18").property('checked');
+
+    var showWithWater = d3.select("#water_with").property('checked');
+    var showWithoutWater = d3.select("#water_without").property('checked');
+
+    var showLightlyWooded = d3.select("#terrain_lWooded").property('checked'); 
+    var showModeratelyWooded = d3.select("#terrain_mWooded").property('checked');
+    var showHeavilyWooded = d3.select("#terrain_hWooded").property('checked');
+
+    var showMostlyFlat = d3.select("#landscape_flat").property('checked'); 
+    var showModeratelyHilly = d3.select("#landscape_mHilly").property('checked'); 
+    var showVeryHilly = d3.select("#landscape_vHilly").property('checked');
+
+    filters["private"] = {
+        "showPublic": showPublic,
+        "showPrivate": showPrivate
+    };
+
+    filters["pay"] = {
+        "showFree": showFree,
+        "showPaid": showPaid
+    };
+
+    filters["holes"] = {
+        "showLessThan9": showLessThan9,
+        "show9": show9,
+        "show10To17": show10To17,
+        "show18": show18,
+        "showMoreThan18": showMoreThan18
+    };
+
+    filters["water"] = {
+        "showWithWater": showWithWater,
+        "showWithoutWater": showWithoutWater
+    };
+
+    filters["terrain"] = {
+        "showLightlyWooded": showLightlyWooded,
+        "showModeratelyWooded": showModeratelyWooded,
+        "showHeavilyWooded":showHeavilyWooded
+    };
+
+    filters["landscape"] = {
+        "showMostlyFlat": showMostlyFlat,
+        "showModeratelyHilly": showModeratelyHilly,
+        "showVeryHilly": showVeryHilly
+    };
 
     return JSON.stringify(filters);
 }
