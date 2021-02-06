@@ -48,7 +48,7 @@ function unpacker(data){
     var bottomStateName = data.data.find(item => item.primary_feature == min).state_name;
     // console.log(bottomStateName);
 
-    return [locations, text, primary_label, primary_feature_list, max,min, topStateName, bottomStateName];
+    return [locations, text, primary_label, primary_feature_list, max,min];
 
 }
 
@@ -56,13 +56,10 @@ function unpacker(data){
 function mapDataLayout(data){
 
     //////// using the unpacker function to delare all the variables we'll need
-    var [locations,text,primary_label,primary_feature_list,max,min,topStateName,bottomStateName]=unpacker(data);
+    var [locations,text,primary_label,primary_feature_list,max,min]=unpacker(data);
 
     /// simplified green yellow red color scale
-    var colorScale = [[0, 'green'], [0.5, 'yellow'],[1, 'red']];
-
-    /// simplified green yellow red color scale
-    var colorScale = [[0, 'white'],[1, 'F2AD0C']];
+    var colorScale = [[0, 'FCEBC2'],[1, 'F2AD0C']];
 
     ///// data for the choropleth map
     var mapData = [{
@@ -79,8 +76,8 @@ function mapDataLayout(data){
         },
         marker: {
             line:{
-                color: 'rgb(255,255,255)',
-                width: 2
+                color: 'rgb(0,0,0)',
+                width: 1
             }
         }
     }];
