@@ -22,7 +22,7 @@ function unpacker(data){
     // console.log(locations);
 
     ///// text for the pop-up when hovering over a state
-    var text = data.data.map(item => titleCase(item.state_name.replace("-","")));
+    var text = data.data.map(item => titleCase(item.state_name.replace("-"," ")));
     // console.log(text);
 
     // gets the label for the first data point called from the api
@@ -86,7 +86,8 @@ function mapDataLayout(data){
         title: primary_label+' by State',
         dragmode:false,////// turns off scroll zoom and pan
         geo:{
-            scope: 'usa'
+            scope: 'usa',
+            scale:5
         }
     };
 
