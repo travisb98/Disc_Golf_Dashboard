@@ -87,8 +87,7 @@ function initCharts() {
        // updates bar graph
        updateBar(data);
 
-
-       updateScatter(data)
+       createScatter(data)
    });
 
    setTimeout(function () {
@@ -97,8 +96,37 @@ function initCharts() {
     
 }
 
-    createScatter(data)
-});
+    
+function updateCharts() {
+
+   //// grabs the values from the primary selection
+   var primaryUserValue = primaryUserSelection.node().value;
+
+   /////// grabs the secondary value from the selection
+   var secondaryUserValue = secondaryUserSelection.node().value;
+
+   ///.....api call based on the values the users selected
+   d3.json(`/api/v1/FeatureAggregate?feat1=${primaryUserValue}&feat2=${secondaryUserValue}`)
+   .header("filters", getFilters())
+   .get(function(error, data){
+
+       console.log(data)
+       
+       // fucntion that updates the choropleth map
+       mapDataLayout(data);
+
+       // updates bar graph
+       updateBar(data);
+
+    
+       updateScatter(data)
+   });
+
+   setTimeout(function () {
+        d3.select("#loader").style("display", "none");
+    }, 2000);
+    
+}
 
 ///// defining the filter button. 
 var filter_button = d3.select("#filter-btn");
@@ -139,6 +167,6 @@ filter_button.on('click',function(){
             //// function to update scatter plot
     d3.select("#loader").style("display", "flex");      
     
-    initCharts()
+    updateCharts()
 
 });
