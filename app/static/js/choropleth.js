@@ -38,16 +38,7 @@ function unpacker(data){
 
     //// finding the min number in the data set
     var min = Math.min.apply(Math,primary_feature_list);
-
-    //// finding the state name with the max number in the data set
-    var topStateName = data.data.find(item => item.primary_feature === max).state_name;
-
-    // console.log(topStateName);
-
-    ///// finding the state with the min number in the data set
-    var bottomStateName = data.data.find(item => item.primary_feature == min).state_name;
-    // console.log(bottomStateName);
-
+    
     return [locations, text, primary_label, primary_feature_list, max,min];
 
 }
