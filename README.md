@@ -1,4 +1,4 @@
-# Disc Golf Course Selector
+# ![disc_image]() Disc Golf Course Selector
 
 ## Overview
 
@@ -9,24 +9,17 @@ The overall goal of this project is to create a dashboard of visualizations with
 ## Datasource
 - [DG Course Review](https://www.dgcoursereview.com/) is a site that lists thousands of disc golf courses around the world. For this project, we'll be focusing on courses in the United States. Each course page lists many details including:
     - Course Name
-    - Private Course?
-    - Pay to Play Course?
+    - Private or Public Status
+    - Pay to Play Course
     - State
-    - City
     - Holes
     - Presence of Water on a Course
     - Presence of Water at each Hole
-    - Tee Type
     - Terrain (Lightly Wooded, Moderately Wooded, Heavily Wooded)
     - Landscape (Mostly Flat, Moderately Hilly, Very Hilly)
     - Rating
     - Reviews
-    - Played
-    - Favorited Wishlisted
-    - Year Established
     - Course Length
-    - Street Address
-    - Zip
 
 ## Steps to reach goal
 1. Scrape each course page DG Course Review
@@ -34,15 +27,9 @@ The overall goal of this project is to create a dashboard of visualizations with
 3. Create functions to aggregate data
 4. Display aggregate data in the browser dashboard
 
-
 ## Tools and Languages
 - MongoDB
     - MongoDB Atlas
-- "one library we didn't cover in class" 
-    - jquery?
-    - moment JS for time???
-    - bootstrap toggler?
-    - Popper JS for placing tooltips????
 - Python
     - Flask
     - Javascript
@@ -53,31 +40,29 @@ The overall goal of this project is to create a dashboard of visualizations with
     - Time
 - HTML
 - CSS
+  - Bootstrap
 - Javascript
+  - D3
+  - Plotly
 
 - ## File overview
-  - ### file one
-    ##### *description of file*
-  - ### file two
-    ##### *description of file*
-  - ### file three
-    ##### *description of file*
+  - ### index.html
+    ##### *html framework for page*
+  - ### DiscScape.ipynb
+    ##### *jupyter notebook used for scraping [DG Course Review](https://www.dgcoursereview.com/)*
+  - ### app.py
+    ##### *application for running flask server and api*
   - ### file four
     ##### *description of file*
 
 - ## Instructions on how to use the program
-    - Step 1
-    - Step 2
-    - Step 3
+    1. Select the Primary Feature using the sidebar, this will determine the y-values of the scatter plot, bar chart and the choropleth maps.
+    2. Select the Secondary Feature using the sidebar, this will determine the x-values of the scatter plot.
+    3. Use the Checkboxes in the sidebar to filter out types of courses that you aren't interested in. By default all boxes are checked, meaning that no courses are filtered out. If you are a beginner and don't want to lose discs, you may want to uncheck "Show Courses With Water".
+    4. Click "Update Dashboard".
+    5. Explore the visuals.
+    6. Repeat!
 
-- ## Findings and Conclusion
-    - Findings
-    - Conclusion
-
-
-
-
-
-
-
-
+- ## Conclusion
+    - Overall, this project is a great showcase of multiple tools and languages including Python, Javascript, CSS, and HTML. Python was used to create the server, access the database, and provide the api endpoints. HTML and CSS were used to create the general page structure and styling.Javascript was used to create the graphs and manage feature selection and filtering. The dashboard offers users the ability to search multiple course features and apply multiple filters.
+    ![page_snip]()
