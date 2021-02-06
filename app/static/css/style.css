@@ -1,8 +1,16 @@
 #title{
 margin-left: -30px;
 margin-top: -65px;
-
+background-color: #00000094;
+width: fit-content;
 }
+
+#desc{
+  margin-left: -30px;
+  background-color: #00000094;
+  width: fit-content;
+  margin-bottom: 0px!important;
+  }
 
 .jumbotron{
     background-repeat: no-repeat;
