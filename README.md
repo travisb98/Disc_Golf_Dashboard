@@ -20,6 +20,10 @@ The overall goal of this project is to create a dashboard of visualizations with
     - Rating
     - Reviews
     - Course Length
+    
+![Disc Golf Course Reveiw Navigation Page](DGCR1.PNG)
+
+![Disc Golf Course Reveiw Course Page](DGCR1.PNG)
 
 ## Project Steps
 1. Scrape each course page DG Course Review
@@ -67,4 +71,4 @@ The overall goal of this project is to create a dashboard of visualizations with
 
 - ## Conclusion
     - Overall, this project is a great showcase of multiple tools and languages including Python, Javascript, CSS, and HTML. Python was used to create the server, access the database, and provide the api endpoints. HTML and CSS were used to create the general page structure and styling.Javascript was used to create the graphs and manage feature selection and filtering. The dashboard offers users the ability to search multiple course features and apply multiple filters.
-    ![page_snip](PageSnip.PNG)
+    ![Final Dashboard](PageSnip.PNG)
