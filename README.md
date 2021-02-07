@@ -1,4 +1,4 @@
-# Disc Golf Course Selector
+# The State of Disc Golf Dashboard
 ![Golf Basket and Bag](FinalImages/HeaderImage.jpg)
 ## Overview
 
