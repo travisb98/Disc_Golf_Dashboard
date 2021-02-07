@@ -1,5 +1,5 @@
 # Disc Golf Course Selector
-![Golf Basket and Bag]("FinalImages/Header Image.jpg")
+![Golf Basket and Bag](FinalImages/HeaderImage.jpg)
 ## Overview
 
 With the popularity of disc golf exploding in 2020 and over 7000 disc golf courses around the nation, it begs the question, where can I go to have the best disc golf experience? Using this application, one will be able to determine, using their own preferences, where is the best place to play a round.
