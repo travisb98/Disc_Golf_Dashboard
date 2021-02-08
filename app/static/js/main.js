@@ -79,7 +79,7 @@ function initCharts() {
    .header("filters", getFilters())
    .get(function(error, data){
 
-       console.log(data)
+    //    console.log(data);
        
        // fucntion that updates the choropleth map
        mapDataLayout(data);
@@ -110,7 +110,7 @@ function updateCharts() {
    .header("filters", getFilters())
    .get(function(error, data){
 
-       console.log(data)
+    //    console.log(data);
        
        // fucntion that updates the choropleth map
        mapDataLayout(data);
@@ -127,6 +127,37 @@ function updateCharts() {
     }, 2000);
     
 }
+
+////// returns a list of lists of d3 selections grouped by category
+function filterGrouping(){
+    var privateFilters =[d3.select("#private_public"),d3.select("#private_private")];
+
+    var payFilters =[d3.select("#pay_free"),d3.select("#pay_paid")];
+
+    var holeFilters = [d3.select("#holes_lt9"),d3.select("#holes_9"),d3.select("#holes_10to17"),d3.select("#holes_18"),d3.select("#holes_gt18")];
+
+    var waterFilters = [d3.select("#water_with"),d3.select("#water_without")];
+
+    var terrainFilters =[d3.select("#terrain_lWooded"),d3.select("#terrain_mWooded"),d3.select("#terrain_hWooded")];
+
+    var landscapeFilters =[d3.select("#landscape_flat"),d3.select("#landscape_mHilly"),d3.select("#landscape_vHilly")];
+
+    return [privateFilters,payFilters,holeFilters,waterFilters,terrainFilters,landscapeFilters];
+};
+
+////// this function applies filter selection correction on an individual group of filters
+//// use filterGrouping fucntion to pass lists to filter correction function
+function filterCorrection(filterGroupList){
+    ///// makes a list of each filterGroupList item with the property checkd value
+    var showGroupList = filterGroupList.map(x=>x.property('checked'));
+
+    ///// if every result in the showgroup list is is unselected
+    if (showGroupList.every((x) => x == false)){
+        // console.log("none were selected");
+        filterGroupList.forEach(x => x.property('checked',true));
+    };
+};
+
 
 ///// defining the filter button. 
 var filter_button = d3.select("#filter-btn");
@@ -164,9 +195,15 @@ primaryUserSelection.on('change',function(){
 
 ///// when the filter button gets clicked....
 filter_button.on('click',function(){
-            //// function to update scatter plot
-    d3.select("#loader").style("display", "flex");      
-    
-    updateCharts()
+
+    ///// a list of each grouping of filters
+    var filterGroups = filterGrouping();
+    //// apply filter correction function to each group of filters
+    filterGroups.forEach(x =>filterCorrection(x));
+
+    //// function to update scatter plot
+    d3.select("#loader").style("display", "flex");
+    //// function to update charts
+    updateCharts();
 
 });
