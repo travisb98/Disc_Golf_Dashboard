@@ -60,7 +60,7 @@ The overall goal of this project is to create a dashboard of visualizations with
   - ### app.py
     ##### *application for running flask server and api*
   - ### main.js
-    ##### *description of file* ************************************************************SOMEONE UPDATE THIS
+    ##### *handles the filters and parameters selected on the sidebar, then calls the js files for the 3 plots*
 
 - ## How to Use the Dashboard
     1. Select the Primary Feature using the sidebar, this will determine the y-values of the scatter plot, bar chart and the choropleth maps.
