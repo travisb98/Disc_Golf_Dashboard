@@ -23,7 +23,7 @@ The overall goal of this project is to create a dashboard of visualizations with
     
 ![Disc Golf Course Reveiw Navigation Page](FinalImages/DGCR1.PNG)
 
-![Disc Golf Course Reveiw Course Page](FinalImages/DGCR1.PNG)
+![Disc Golf Course Reveiw Course Page](FinalImages/DGCR2.PNG)
 
 ## Project Steps
 1. Scrape each course page DG Course Review
@@ -65,7 +65,6 @@ The overall goal of this project is to create a dashboard of visualizations with
 - ## How to Use the Dashboard
 
 ![Sidebar](FinalImages/Sidebar.PNG)
-
     1. Select the Primary Feature using the sidebar, this will determine the y-values of the scatter plot, bar chart and the choropleth maps.
     2. Select the Secondary Feature using the sidebar, this will determine the x-values of the scatter plot.
     3. Use the Checkboxes in the sidebar to filter out types of courses that you aren't interested in. By default all boxes are checked, meaning that no courses are filtered out. If you are a beginner and don't want to lose discs, you may want to uncheck "Show Courses With Water".
@@ -75,4 +74,5 @@ The overall goal of this project is to create a dashboard of visualizations with
 
 - ## Conclusion
     - Overall, this project is a great showcase of multiple tools and languages including Python, Javascript, CSS, and HTML. Python was used to create the server, access the database, and provide the api endpoints. HTML and CSS were used to create the general page structure and styling.Javascript was used to create the graphs and manage feature selection and filtering. The dashboard offers users the ability to search multiple course features and apply multiple filters.
+    
     ![Final Dashboard](FinalImages/PageSnip.PNG)
