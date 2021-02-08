@@ -85,17 +85,3 @@ function mapDataLayout(data){
     // return [mapData, mapLayout];
     return Plotly.react("choropleth", mapData, mapLayout, {showLink: false});
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
