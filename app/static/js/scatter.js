@@ -66,6 +66,22 @@ function createScatter(dataInfo) {
       .style("stroke", "black")
       .style("fill", "#F2AD0C");
 
+  // Apply toolTips
+  var toolTip = d3.tip()
+  .attr("class", "d3-tip")
+  .offset([0, 0])
+  .html(function(data) {
+      return (`${titleCase(data.state_name.replace("-"," "))}<br>${dataInfo.secondary_label}: ${data.secondary_feature}<br>${dataInfo.primary_label}: ${data.primary_feature}`);
+  });
+
+  dots.call(toolTip);
+  
+  dots.on("mouseover", function(data) {
+      toolTip.show(data);
+  })
+  .on("mouseout", function(data) {
+      toolTip.hide(data);
+  });
 
   // Add X axis label:
   svg.append("text")
@@ -142,12 +158,30 @@ function updateScatter(dataInfo) {
     .data(dataInfo.data)
     .enter()
     .append('g')
-    dots.append("circle")
+  dots.append("circle")
       .attr("cx", function (d) { return x(d.secondary_feature); } )
       .attr("cy", function (d) {  return y(d.primary_feature); } )
       .attr("r", 12)
       .style("stroke", "black")
       .style("fill", "#F2AD0C");
+
+      
+  // Apply toolTips
+  var toolTip = d3.tip()
+  .attr("class", "d3-tip")
+  .offset([0, 0])
+  .html(function(data) {
+      return (`${titleCase(data.state_name.replace("-"," "))}<br>${dataInfo.secondary_label}: ${data.secondary_feature}<br>${dataInfo.primary_label}: ${data.primary_feature}`);
+  });
+
+  dots.call(toolTip);
+  
+  dots.on("mouseover", function(data) {
+      toolTip.show(data);
+  })
+  .on("mouseout", function(data) {
+      toolTip.hide(data);
+  });
 
 
   // Add X axis label:
