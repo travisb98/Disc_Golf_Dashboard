@@ -48,7 +48,7 @@ The overall goal of this project is to create a dashboard of visualizations with
 - HTML
 - CSS
   - Bootstrap
-- Javascript
+- JavaScript
   - D3
   - Plotly
 
