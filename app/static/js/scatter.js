@@ -73,11 +73,9 @@ function createScatter(dataInfo) {
       .text(xtitle);
   // Y axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("transform", "rotate(-90)")
-      .attr("y", -margin.left+80)
-      .attr("x", -margin.top)
-      .text(ytitle);
+  .attr("text-anchor", "center")
+  .attr("transform", `translate(${width - 710}, ${height -5}),rotate(-90)`)
+  .text(ytitle);
   
   
 
@@ -158,12 +156,9 @@ function updateScatter(dataInfo) {
       .text(xtitle);
   // Y axis label:
   svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("transform", "rotate(-90)")
-      .attr("y", -margin.left+80)
-      .attr("x", -margin.top)
-      .text(ytitle);
-  
+  .attr("text-anchor", "center")
+  .attr("transform", `translate(${width - 710}, ${height -5}),rotate(-90)`)
+  .text(ytitle);
   
 
   };
