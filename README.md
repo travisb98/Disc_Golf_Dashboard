@@ -34,7 +34,9 @@ The overall goal of this project is to create a dashboard of visualizations with
 ## Tools and Languages
 - MongoDB
     - MongoDB Atlas
+    
 ![Database](FinalImages/MongoDB.PNG)
+
 - Python
     - Flask
     - Javascript
@@ -61,7 +63,9 @@ The overall goal of this project is to create a dashboard of visualizations with
     ##### *description of file* ************************************************************SOMEONE UPDATE THIS
 
 - ## How to Use the Dashboard
+
 ![Sidebar](FinalImages/Sidebar.PNG)
+
     1. Select the Primary Feature using the sidebar, this will determine the y-values of the scatter plot, bar chart and the choropleth maps.
     2. Select the Secondary Feature using the sidebar, this will determine the x-values of the scatter plot.
     3. Use the Checkboxes in the sidebar to filter out types of courses that you aren't interested in. By default all boxes are checked, meaning that no courses are filtered out. If you are a beginner and don't want to lose discs, you may want to uncheck "Show Courses With Water".
